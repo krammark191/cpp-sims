@@ -13,6 +13,10 @@
 #include <math.h>
 #include <cassert>  // for ASSERT
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 /*******************************************************
  * AREA FROM RADIUS
  * Compute the area of a circle from the radius
@@ -132,4 +136,3 @@ double speedSoundFromAltitude(double altitude);
  * Determine the drag coefficient as a function of the speed of sound
  *********************************************************/
 double dragFromMach(double speedMach);
-
