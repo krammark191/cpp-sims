@@ -138,6 +138,7 @@ if(APPLE OR WIN32)
          PRIVATE
             OpenGL::GL
             GLUT::GLUT
+            glu32
             windowscodecs
             ole32
       )
