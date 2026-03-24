@@ -12,6 +12,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
       app/control_binding_formatter.cpp
       app/engine_shell_session.cpp
       app/preview_storyboard.cpp
+      app/runtime_paths.cpp
       app/runtime_controller.cpp
       app/scene_input_router.cpp
       app/scene_status_formatter.cpp
@@ -56,14 +57,15 @@ target_link_libraries(cpp_simulators
       sampler_app
 )
 
-if(APPLE)
-   add_executable(cpp_simulators_window
+if(APPLE OR WIN32)
+   set(CPP_SIMULATORS_WINDOW_SOURCES
       "C++ Simulators/window_main.cpp"
       app/window_shell_runner.cpp
       app/application.cpp
       app/control_binding_formatter.cpp
       app/engine_shell_session.cpp
       app/preview_storyboard.cpp
+      app/runtime_paths.cpp
       app/runtime_controller.cpp
       app/scene_input_router.cpp
       app/scene_status_formatter.cpp
@@ -95,6 +97,16 @@ if(APPLE)
       simulators/orbital/orbital_scene.cpp
    )
 
+   if(WIN32)
+      add_executable(cpp_simulators_window WIN32
+         ${CPP_SIMULATORS_WINDOW_SOURCES}
+      )
+   else()
+   add_executable(cpp_simulators_window
+         ${CPP_SIMULATORS_WINDOW_SOURCES}
+      )
+   endif()
+
    target_include_directories(cpp_simulators_window
       PRIVATE
          ${CMAKE_CURRENT_SOURCE_DIR}
@@ -105,12 +117,31 @@ if(APPLE)
          CPP_SIMULATORS_WINDOW
    )
 
-   target_link_libraries(cpp_simulators_window
-      PRIVATE
-         "-framework ApplicationServices"
-         "-framework OpenGL"
-         "-framework GLUT"
-   )
+   if(APPLE)
+      target_link_libraries(cpp_simulators_window
+         PRIVATE
+            "-framework ApplicationServices"
+            "-framework OpenGL"
+            "-framework GLUT"
+      )
+   elseif(WIN32)
+      find_package(OpenGL REQUIRED)
+      find_package(GLUT REQUIRED)
+
+      target_compile_definitions(cpp_simulators_window
+         PRIVATE
+            WIN32_LEAN_AND_MEAN
+            NOMINMAX
+      )
+
+      target_link_libraries(cpp_simulators_window
+         PRIVATE
+            OpenGL::GL
+            GLUT::GLUT
+            windowscodecs
+            ole32
+      )
+   endif()
 endif()
 
 if(APPLE)

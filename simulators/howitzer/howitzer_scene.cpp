@@ -9,12 +9,9 @@
 #include <string>
 #include <vector>
 
+#include "app/runtime_paths.h"
 #include "engine/image_sequence.h"
 #include "simulators/common/scene_render_utils.h"
-
-#if defined(__APPLE__)
-#include <mach-o/dyld.h>
-#endif
 
 #define private public
 #include "simulators/howitzer/howitzer_legacy_bridge.h"
@@ -59,26 +56,7 @@ Position makeUiPosition(const HowitzerPosition & position)
 
 std::filesystem::path resolveHowitzerEffectDirectory(const std::string & name)
 {
-   const std::filesystem::path relativePath = std::filesystem::path("assets/howitzer/effects") / name;
-   if (std::filesystem::exists(relativePath))
-      return relativePath;
-
-#if defined(__APPLE__)
-   uint32_t size = 0;
-   _NSGetExecutablePath(nullptr, &size);
-   std::string buffer(size, '\0');
-   if (_NSGetExecutablePath(buffer.data(), &size) == 0)
-   {
-      std::filesystem::path executablePath(buffer.c_str());
-      executablePath = std::filesystem::weakly_canonical(executablePath);
-      const std::filesystem::path bundlePath =
-         executablePath.parent_path().parent_path() / "Resources" / "assets" / "howitzer" / "effects" / name;
-      if (std::filesystem::exists(bundlePath))
-         return bundlePath;
-   }
-#endif
-
-   return relativePath;
+   return RuntimePaths::resolveRelativePath(std::filesystem::path("assets/howitzer/effects") / name);
 }
 
 const std::vector<ImageSequenceFrame> & groundExplosionFrames()

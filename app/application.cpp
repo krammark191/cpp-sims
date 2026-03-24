@@ -3,6 +3,7 @@
 #include <filesystem>
 
 #include "app/preview_storyboard.h"
+#include "app/runtime_paths.h"
 #include "app/scene_factory.h"
 #include "app/simulator_registry.h"
 
@@ -132,7 +133,7 @@ bool Application::previewAssetAvailable() const
    if (metadata == nullptr || metadata->demoVideoPath == nullptr)
       return false;
 
-   return std::filesystem::exists(metadata->demoVideoPath) ||
+   return std::filesystem::exists(RuntimePaths::resolveRelativePath(metadata->demoVideoPath)) ||
       PreviewStoryboardLoader::hasStoryboard(*metadata);
 }
 

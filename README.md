@@ -17,10 +17,12 @@ Published binaries should be distributed through GitHub Releases:
   - [https://github.com/krammark191/cpp-sims/releases/latest](https://github.com/krammark191/cpp-sims/releases/latest)
 - Latest macOS dmg:
   - [https://github.com/krammark191/cpp-sims/releases/latest/download/C%2B%2B%20Simulators.dmg](https://github.com/krammark191/cpp-sims/releases/latest/download/C%2B%2B%20Simulators.dmg)
-- Future Windows exe:
+- Windows package zip:
+  - [https://github.com/krammark191/cpp-sims/releases/latest/download/C%2B%2B%20Simulators-windows.zip](https://github.com/krammark191/cpp-sims/releases/latest/download/C%2B%2B%20Simulators-windows.zip)
+- Raw Windows exe asset:
   - [https://github.com/krammark191/cpp-sims/releases/latest/download/C%2B%2B%20Simulators.exe](https://github.com/krammark191/cpp-sims/releases/latest/download/C%2B%2B%20Simulators.exe)
 
-These direct asset links start working once a GitHub release is published with matching asset names.
+These direct asset links start working once a GitHub release is published with matching asset names. On Windows, the zip package is the intended user download because it includes the executable together with the required assets and runtime DLLs.
 
 ## Repository Layout
 
@@ -75,7 +77,7 @@ These paths are generated locally and are ignored by Git:
 ## GitHub Release Flow
 
 - Build and package the macOS deliverable into `dist/C++ Simulators.dmg`
-- Optionally stage a Windows build as `dist/C++ Simulators.exe`
+- Publish the Windows package through the GitHub Actions workflow on release tags
 - Publish the release with:
   - `scripts/publish_github_release.sh <tag>`
 

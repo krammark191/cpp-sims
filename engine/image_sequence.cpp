@@ -8,6 +8,15 @@
 
 #if defined(__APPLE__) && defined(CPP_SIMULATORS_WINDOW)
 #include <ApplicationServices/ApplicationServices.h>
+#elif defined(_WIN32) && defined(CPP_SIMULATORS_WINDOW)
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <windows.h>
+#include <wincodec.h>
 #endif
 
 namespace
@@ -78,6 +87,111 @@ std::optional<ImageSequenceFrame> loadSinglePng(const std::filesystem::path & fi
       });
    }
 
+   return frame;
+}
+#elif defined(_WIN32) && defined(CPP_SIMULATORS_WINDOW)
+std::optional<ImageSequenceFrame> loadSinglePng(const std::filesystem::path & file)
+{
+   HRESULT initResult = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+   const bool shouldUninitialize = SUCCEEDED(initResult);
+
+   IWICImagingFactory * factory = nullptr;
+   IWICBitmapDecoder * decoder = nullptr;
+   IWICBitmapFrameDecode * sourceFrame = nullptr;
+   IWICFormatConverter * converter = nullptr;
+
+   auto cleanup = [&]()
+   {
+      if (converter != nullptr)
+         converter->Release();
+      if (sourceFrame != nullptr)
+         sourceFrame->Release();
+      if (decoder != nullptr)
+         decoder->Release();
+      if (factory != nullptr)
+         factory->Release();
+      if (shouldUninitialize)
+         CoUninitialize();
+   };
+
+   if (FAILED(CoCreateInstance(CLSID_WICImagingFactory,
+                               nullptr,
+                               CLSCTX_INPROC_SERVER,
+                               IID_IWICImagingFactory,
+                               reinterpret_cast<void **>(&factory))))
+   {
+      cleanup();
+      return std::nullopt;
+   }
+
+   const std::wstring widePath = file.wstring();
+   if (FAILED(factory->CreateDecoderFromFilename(widePath.c_str(),
+                                                 nullptr,
+                                                 GENERIC_READ,
+                                                 WICDecodeMetadataCacheOnLoad,
+                                                 &decoder)))
+   {
+      cleanup();
+      return std::nullopt;
+   }
+
+   if (FAILED(decoder->GetFrame(0, &sourceFrame)))
+   {
+      cleanup();
+      return std::nullopt;
+   }
+
+   if (FAILED(factory->CreateFormatConverter(&converter)))
+   {
+      cleanup();
+      return std::nullopt;
+   }
+
+   if (FAILED(converter->Initialize(sourceFrame,
+                                    GUID_WICPixelFormat32bppRGBA,
+                                    WICBitmapDitherTypeNone,
+                                    nullptr,
+                                    0.0,
+                                    WICBitmapPaletteTypeCustom)))
+   {
+      cleanup();
+      return std::nullopt;
+   }
+
+   UINT width = 0;
+   UINT height = 0;
+   if (FAILED(converter->GetSize(&width, &height)) || width == 0 || height == 0)
+   {
+      cleanup();
+      return std::nullopt;
+   }
+
+   std::vector<unsigned char> raw(static_cast<std::size_t>(width) * height * 4, 0);
+   const UINT stride = width * 4;
+   const UINT rawSize = static_cast<UINT>(raw.size());
+   if (FAILED(converter->CopyPixels(nullptr, stride, rawSize, raw.data())))
+   {
+      cleanup();
+      return std::nullopt;
+   }
+
+   ImageSequenceFrame frame;
+   frame.width = static_cast<int>(width);
+   frame.height = static_cast<int>(height);
+   frame.pixels.reserve(static_cast<std::size_t>(width) * height);
+   for (std::size_t i = 0; i < static_cast<std::size_t>(width) * height; ++i)
+   {
+      const std::size_t offset = i * 4;
+      frame.pixels.push_back(
+      {
+         static_cast<double>(raw[offset + 0]) / 255.0,
+         static_cast<double>(raw[offset + 1]) / 255.0,
+         static_cast<double>(raw[offset + 2]) / 255.0,
+         static_cast<double>(raw[offset + 3]) / 255.0
+      });
+   }
+
+   cleanup();
    return frame;
 }
 #endif

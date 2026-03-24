@@ -7,12 +7,9 @@
 #include <string>
 #include <vector>
 
+#include "app/runtime_paths.h"
 #include "engine/image_sequence.h"
 #include "simulators/common/scene_render_utils.h"
-
-#if defined(__APPLE__)
-#include <mach-o/dyld.h>
-#endif
 
 #define private public
 #include "simulators/lander/legacy/acceleration.h"
@@ -81,26 +78,7 @@ Position offsetPosition(const Position & origin, double angle, double distance)
 
 std::filesystem::path apolloExplosionAssetDirectory()
 {
-   const std::filesystem::path relativeAssetPath("assets/apollo/effects/explosion4");
-   if (std::filesystem::exists(relativeAssetPath))
-      return relativeAssetPath;
-
-#if defined(__APPLE__)
-   uint32_t size = 0;
-   _NSGetExecutablePath(nullptr, &size);
-   std::string buffer(size, '\0');
-   if (_NSGetExecutablePath(buffer.data(), &size) == 0)
-   {
-      std::filesystem::path executablePath(buffer.c_str());
-      executablePath = std::filesystem::weakly_canonical(executablePath);
-      const std::filesystem::path bundleAssetPath =
-         executablePath.parent_path().parent_path() / "Resources" / "assets" / "apollo" / "effects" / "explosion4";
-      if (std::filesystem::exists(bundleAssetPath))
-         return bundleAssetPath;
-   }
-#endif
-
-   return relativeAssetPath;
+   return RuntimePaths::resolveRelativePath("assets/apollo/effects/explosion4");
 }
 
 const std::vector<ImageSequenceFrame> & apolloExplosionFrames()

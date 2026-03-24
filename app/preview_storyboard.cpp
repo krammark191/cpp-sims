@@ -6,6 +6,8 @@
 #include <limits>
 #include <sstream>
 
+#include "app/runtime_paths.h"
+
 namespace
 {
 std::string trim(const std::string & value)
@@ -86,7 +88,8 @@ std::optional<PreviewStoryboard> PreviewStoryboardLoader::load(const SimulatorMe
    if (metadata.previewManifestPath == nullptr)
       return std::nullopt;
 
-   const std::filesystem::path manifestPath(metadata.previewManifestPath);
+   const std::filesystem::path manifestPath =
+      RuntimePaths::resolveRelativePath(std::filesystem::path(metadata.previewManifestPath));
    std::ifstream input(manifestPath);
    if (!input.is_open())
       return std::nullopt;
@@ -167,7 +170,8 @@ std::optional<PreviewStoryboard> PreviewStoryboardLoader::load(const SimulatorMe
 bool PreviewStoryboardLoader::hasStoryboard(const SimulatorMetadata & metadata)
 {
    return metadata.previewManifestPath != nullptr &&
-      std::filesystem::exists(metadata.previewManifestPath);
+      std::filesystem::exists(
+         RuntimePaths::resolveRelativePath(std::filesystem::path(metadata.previewManifestPath)));
 }
 
 std::size_t PreviewStoryboardLoader::frameIndexAtTime(const PreviewStoryboard & storyboard,

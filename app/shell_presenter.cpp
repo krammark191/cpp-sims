@@ -83,7 +83,7 @@ ShellScreen ShellPresenter::build(const Application & app) const
          "Controls overlay duration: " + std::to_string(app.controlsOverlayDurationSeconds()) + " s on scene entry.",
          "Pause behavior: ESC opens Resume / Keybindings / Quit while the scene is frozen.",
          "Preview playback: storyboard loop backend active for the Play screen.",
-         "Packaging target: macOS app bundle first, Windows packaging deferred.",
+         "Packaging target: macOS dmg release plus a Windows executable release package.",
          "Future toggles: master volume, music volume, SFX volume, fullscreen, overlay duration."
       };
       screen.footerCommands = ShellCommandCatalog::forState(app.state());

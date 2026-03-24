@@ -7,7 +7,8 @@ This project distributes packaged binaries through GitHub Releases.
 - macOS:
   - `dist/C++ Simulators.dmg`
 - Windows:
-  - `dist/C++ Simulators.exe` when a Windows build is available
+  - `dist/C++ Simulators.exe`
+  - `dist/C++ Simulators-windows.zip`
 
 The README points to the `latest` release page and to direct asset download URLs for those filenames.
 
@@ -28,6 +29,7 @@ scripts/publish_github_release.sh v0.2.0 "C++ Simulators v0.2.0"
 
 - checks for the required macOS dmg asset
 - optionally includes the Windows exe if it exists
+- leaves Windows packaging to the GitHub Actions workflow when building on Windows
 - creates the Git tag locally if it does not already exist
 - pushes the tag to `origin`
 - creates or updates the matching GitHub release
@@ -39,6 +41,7 @@ scripts/publish_github_release.sh v0.2.0 "C++ Simulators v0.2.0"
   - `dist/C++ Simulators.dmg`
 - optional:
   - `dist/C++ Simulators.exe`
+  - `dist/C++ Simulators-windows.zip`
 
 ## Authentication
 
@@ -49,5 +52,7 @@ The script uses GitHub credentials already available to Git on the local machine
 - keep release asset names stable:
   - `C++ Simulators.dmg`
   - `C++ Simulators.exe`
+  - `C++ Simulators-windows.zip`
 - use semantic version tags such as `v0.1.0`
 - publish packaged binaries through Releases rather than committing them into the repository
+- prefer the Windows zip as the user-facing download because the executable needs companion assets and runtime DLLs
