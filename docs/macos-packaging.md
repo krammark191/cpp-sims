@@ -1,6 +1,6 @@
 # macOS Packaging
 
-This project now includes a local packaging script for the first macOS deliverable.
+This project includes local packaging scripts for the macOS deliverable used in GitHub Releases.
 
 ## Inputs
 
@@ -58,3 +58,4 @@ The dmg staging layout includes:
 - The bundle and dmg both receive a Finder icon from the current custom icon source.
 - The icon source image is staged into the bundle resources for future replacement.
 - The bundle identifier is currently `com.markvanhorn.cppsimulators`.
+- The Windows zip and exe are built separately by `.github/workflows/windows-release.yml`.

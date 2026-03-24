@@ -28,12 +28,12 @@ scripts/publish_github_release.sh v0.2.0 "C++ Simulators v0.2.0"
 ## What The Script Does
 
 - checks for the required macOS dmg asset
-- optionally includes the Windows exe if it exists
-- leaves Windows packaging to the GitHub Actions workflow when building on Windows
-- creates the Git tag locally if it does not already exist
-- pushes the tag to `origin`
+- pushes the release tag to GitHub
 - creates or updates the matching GitHub release
-- uploads the packaged assets to that release
+- uploads the packaged macOS dmg immediately
+- optionally uploads local Windows assets if they already exist
+- lets the Windows GitHub Actions workflow build and attach the Windows zip and exe on release tags
+- creates the Git tag locally if it does not already exist
 
 ## Inputs
 
@@ -56,3 +56,4 @@ The script uses GitHub credentials already available to Git on the local machine
 - use semantic version tags such as `v0.1.0`
 - publish packaged binaries through Releases rather than committing them into the repository
 - prefer the Windows zip as the user-facing download because the executable needs companion assets and runtime DLLs
+- treat the macOS dmg as the manually packaged asset and the Windows package as the CI-built asset

@@ -38,7 +38,7 @@ void runShellPresenterTests()
       std::ostringstream output;
       presenter.render(screen, output);
       assert(output.str().find("Audio: hooks ready") != std::string::npos);
-      assert(output.str().find("Packaging target: macOS app bundle first") != std::string::npos);
+      assert(output.str().find("Packaging target: macOS dmg release plus Windows zip and exe release assets.") != std::string::npos);
    }
 
    {
@@ -52,7 +52,7 @@ void runShellPresenterTests()
       assert(output.str().find("Apollo 11 Lander") != std::string::npos);
       assert(output.str().find("Mark Van Horn and Taden Marston") != std::string::npos);
       assert(output.str().find("Dr. James Helfrich") != std::string::npos);
-      assert(output.str().find("macOS sampler build first") != std::string::npos);
+      assert(output.str().find("macOS and Windows release paths are live") != std::string::npos);
    }
 
    {

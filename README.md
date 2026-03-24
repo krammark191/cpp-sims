@@ -1,13 +1,13 @@
 # C++ Simulators
 
-Native C++ sampler application that combines four legacy course simulators into a single macOS app:
+Native C++ sampler application that combines four legacy course simulators into a single desktop release project:
 
 - Apollo 11 Lander
 - Artillery Howitzer
 - Chess
 - Orbital Simulator
 
-The merged app keeps the original OpenGL/GLUT-style engine approach while adding a shared shell, common menu flow, per-simulator adapters, preview assets, packaging scripts, and test coverage.
+The merged app keeps the original OpenGL/GLUT-style engine approach while adding a shared shell, common menu flow, per-simulator adapters, preview assets, packaging scripts, release automation, and test coverage.
 
 ## Downloads
 
@@ -22,12 +22,12 @@ Published binaries should be distributed through GitHub Releases:
 - Raw Windows exe asset:
   - [https://github.com/krammark191/cpp-sims/releases/latest/download/C%2B%2B%20Simulators.exe](https://github.com/krammark191/cpp-sims/releases/latest/download/C%2B%2B%20Simulators.exe)
 
-These direct asset links start working once a GitHub release is published with matching asset names. On Windows, the zip package is the intended user download because it includes the executable together with the required assets and runtime DLLs.
+These direct asset links resolve to the most recent published release. On Windows, the zip package is the intended user download because it includes the executable together with the required assets and runtime DLLs.
 
 ## Repository Layout
 
 - `C++ Simulators/`
-  - macOS entry points used by the Xcode target
+  - desktop entry points used by the Xcode target and shared launcher sources
 - `app/`
   - shared application shell, runtime controller, menu/presenter logic, preview handling
 - `engine/`
@@ -39,9 +39,9 @@ These direct asset links start working once a GitHub release is published with m
 - `assets/`
   - preview manifests, images, and imported effect assets
 - `scripts/`
-  - macOS app and dmg packaging scripts
+  - local packaging and release publish scripts
 - `docs/`
-  - merge planning, cleanup notes, and packaging documentation
+  - merge planning, cleanup notes, packaging, and release documentation
 
 ## Build Paths
 
@@ -51,7 +51,7 @@ Open:
 
 - `C++ Simulators.xcodeproj`
 
-The `C++ Simulators` target is configured to build the macOS window app entry point from:
+The `C++ Simulators` target is configured to build the desktop window app entry point from:
 
 - `C++ Simulators/window_main.cpp`
 
@@ -67,6 +67,10 @@ Packaging scripts:
 - `scripts/package_macos_dmg.sh`
 - `scripts/publish_github_release.sh`
 
+GitHub Actions workflow:
+
+- `.github/workflows/windows-release.yml`
+
 ## Generated Output
 
 These paths are generated locally and are ignored by Git:
@@ -77,9 +81,10 @@ These paths are generated locally and are ignored by Git:
 ## GitHub Release Flow
 
 - Build and package the macOS deliverable into `dist/C++ Simulators.dmg`
-- Publish the Windows package through the GitHub Actions workflow on release tags
-- Publish the release with:
-  - `scripts/publish_github_release.sh <tag>`
+- Publish a release tag with `scripts/publish_github_release.sh <tag>`
+- Let the Windows GitHub Actions workflow build and attach:
+  - `C++ Simulators-windows.zip`
+  - `C++ Simulators.exe`
 
 See:
 

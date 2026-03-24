@@ -36,7 +36,7 @@ ShellScreen ShellPresenter::build(const Application & app) const
       {
          "Sampler shell for Apollo 11 Lander, Howitzer, Chess, and Orbital.",
          "Play opens the prerecorded preview browser before launching a simulator.",
-         "Options tracks current hooks and release targets for the first macOS build.",
+         "Options tracks current hooks and release targets for the desktop builds.",
          "About summarizes the merged project and simulator roster."
       };
       screen.footerCommands = ShellCommandCatalog::forState(app.state());
@@ -83,7 +83,7 @@ ShellScreen ShellPresenter::build(const Application & app) const
          "Controls overlay duration: " + std::to_string(app.controlsOverlayDurationSeconds()) + " s on scene entry.",
          "Pause behavior: ESC opens Resume / Keybindings / Quit while the scene is frozen.",
          "Preview playback: storyboard loop backend active for the Play screen.",
-         "Packaging target: macOS dmg release plus a Windows executable release package.",
+         "Packaging target: macOS dmg release plus Windows zip and exe release assets.",
          "Future toggles: master volume, music volume, SFX volume, fullscreen, overlay duration."
       };
       screen.footerCommands = ShellCommandCatalog::forState(app.state());
@@ -101,13 +101,13 @@ ShellScreen ShellPresenter::build(const Application & app) const
       screen.bodyLines.push_back("Authorship:");
       screen.bodyLines.push_back("- Mark Van Horn and Taden Marston authored the preexisting files carrying their names.");
       screen.bodyLines.push_back("- Dr. James Helfrich authored the other preexisting course framework files carrying his name.");
-      screen.bodyLines.push_back("- Mark Van Horn authored the new merge-shell and packaging files created in this workspace today.");
+      screen.bodyLines.push_back("- Mark Van Horn authored the merge-shell, packaging, and release workflow files for this combined sampler.");
       screen.bodyLines.push_back("Integration notes:");
       screen.bodyLines.push_back("- Apollo uses the original flight, fuel, terrain, and landing logic.");
       screen.bodyLines.push_back("- Howitzer runs through a conflict-safe bridge scene with live rendering.");
       screen.bodyLines.push_back("- Chess uses an audited legacy rules core with room for AI and puzzle modes.");
       screen.bodyLines.push_back("- Orbital uses the legacy collision and debris model through a renamed bridge.");
-      screen.bodyLines.push_back("Project status: macOS sampler build first, with shared shell and preview support in place.");
+      screen.bodyLines.push_back("Project status: macOS and Windows release paths are live, with shared shell and preview support in place.");
       screen.footerCommands = ShellCommandCatalog::forState(app.state());
       break;
 
