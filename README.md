@@ -9,6 +9,20 @@ Native C++ sampler application that combines four legacy course simulators into 
 
 The merged app keeps the original OpenGL/GLUT-style engine approach while adding a shared shell, common menu flow, per-simulator adapters, preview assets, packaging scripts, release automation, and test coverage.
 
+## Visual Overview
+
+App icon:
+
+![C++ Simulators icon](assets/icon/app-icon-source.png)
+
+Preview keyframes:
+
+| Apollo 11 Lander | Artillery Howitzer |
+| --- | --- |
+| ![Apollo 11 Lander preview](assets/readme/apollo11_lander_keyframe.png) | ![Howitzer preview](assets/readme/howitzer_keyframe.png) |
+| Chess | Orbital Simulator |
+| ![Chess preview](assets/readme/chess_keyframe.png) | ![Orbital preview](assets/readme/orbital_keyframe.png) |
+
 ## Downloads
 
 Published binaries should be distributed through GitHub Releases:
@@ -89,6 +103,8 @@ These paths are generated locally and are ignored by Git:
 See:
 
 - `docs/github-releases.md`
+- `docs/release-checklist.md`
+- `CHANGELOG.md`
 
 ## Notes for GitHub
 
