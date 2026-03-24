@@ -1,0 +1,15 @@
+#include "simulators/chess/chess_legacy_rename.h"
+#include "simulators/chess/legacy/position.cpp"
+#include "simulators/chess/legacy/move.cpp"
+#include "simulators/chess/legacy/piece.cpp"
+#include "simulators/chess/legacy/pieceBishop.cpp"
+#include "simulators/chess/legacy/pieceKing.cpp"
+#include "simulators/chess/legacy/pieceKnight.cpp"
+#include "simulators/chess/legacy/piecePawn.cpp"
+#include "simulators/chess/legacy/pieceQueen.cpp"
+#include "simulators/chess/legacy/pieceRook.cpp"
+#include "simulators/chess/legacy/board.cpp"
+double Position::squareWidth = static_cast<double>(SIZE_SQUARE);
+double Position::squareHeight = static_cast<double>(SIZE_SQUARE);
+#include "simulators/chess/legacy/uiDraw.cpp"
+#include "simulators/chess/chess_legacy_unrename.h"

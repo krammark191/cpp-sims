@@ -1,0 +1,23 @@
+title=Orbital Simulator
+frame_seconds=2.3
+
+[frame]
+headline=Earth-Centered Map
+subline=Track live bodies, debris fields, and the Dream Chaser approach path.
+image=orbital_keyframe.ppm
+background=0.04,0.07,0.11
+accent=0.42,0.78,1.00
+
+[frame]
+headline=Collision Chain
+subline=Projectiles and fragments turn a stable orbit into a debris storm.
+image=orbital_keyframe.ppm
+background=0.08,0.06,0.10
+accent=1.00,0.86,0.22
+
+[frame]
+headline=Recovery Window
+subline=Rotate, thrust, and survive while the constellation falls apart around you.
+image=orbital_keyframe.ppm
+background=0.06,0.09,0.08
+accent=0.44,0.92,0.56

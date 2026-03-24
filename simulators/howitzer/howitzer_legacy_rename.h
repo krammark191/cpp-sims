@@ -1,0 +1,25 @@
+#pragma once
+
+#define Position HowitzerPosition
+#define Velocity HowitzerVelocity
+#define Acceleration HowitzerAcceleration
+#define Angle HowitzerAngle
+#define PT HowitzerPoint
+#define Ground HowitzerGround
+#define Howitzer HowitzerLegacyHowitzer
+#define Projectile HowitzerLegacyProjectile
+#define Simulator HowitzerLegacySimulator
+#define Mapping HowitzerMapping
+#define ogstream HowitzerOgstream
+#define ogstreamDummy HowitzerOgstreamDummy
+#define random howitzerRandom
+#define rotatePosition howitzerRotatePosition
+#define areaFromRadius howitzerAreaFromRadius
+#define forceFromDrag howitzerForceFromDrag
+#define accelerationFromForce howitzerAccelerationFromForce
+#define velocityFromAcceleration howitzerVelocityFromAcceleration
+#define linearInterpolation howitzerLinearInterpolation
+#define gravityFromAltitude howitzerGravityFromAltitude
+#define densityFromAltitude howitzerDensityFromAltitude
+#define speedSoundFromAltitude howitzerSpeedSoundFromAltitude
+#define dragFromMach howitzerDragFromMach

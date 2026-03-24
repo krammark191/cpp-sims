@@ -1,0 +1,33 @@
+.DS_Store
+**/.DS_Store
+
+# Generated build and packaging output
+/build/
+/dist/
+
+# CMake and generic native build products
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+*.app
+*.dmg
+*.dSYM/
+
+# Xcode user-specific files
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Test and coverage artifacts
+*.gcno
+*.gcda
+*.gcov

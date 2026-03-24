@@ -1,0 +1,15 @@
+#pragma once
+
+#include "simulators/orbital/orbital_legacy_rename.h"
+#include "simulators/orbital/legacy/DreamChaser.h"
+#include "simulators/orbital/legacy/dragon.h"
+#include "simulators/orbital/legacy/fragment.h"
+#include "simulators/orbital/legacy/gps.h"
+#include "simulators/orbital/legacy/hubble.h"
+#include "simulators/orbital/legacy/part.h"
+#include "simulators/orbital/legacy/physics.h"
+#include "simulators/orbital/legacy/projectile.h"
+#include "simulators/orbital/legacy/sputnik.h"
+#include "simulators/orbital/legacy/star.h"
+#include "simulators/orbital/legacy/starlink.h"
+#include "simulators/orbital/orbital_legacy_unrename.h"

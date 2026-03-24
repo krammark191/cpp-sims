@@ -1,0 +1,23 @@
+title=Howitzer Artillery
+frame_seconds=2.2
+
+[frame]
+headline=Range Setup
+subline=Walk the barrel angle into place and watch the arc build.
+image=howitzer_keyframe.ppm
+background=0.10,0.08,0.05
+accent=0.94,0.68,0.22
+
+[frame]
+headline=Shot in Flight
+subline=The projectile clears the ridge and drops toward the target marker.
+image=howitzer_keyframe.ppm
+background=0.11,0.09,0.07
+accent=0.82,0.84,0.88
+
+[frame]
+headline=Direct Hit
+subline=Small corrections turn a long miss into a clean impact.
+image=howitzer_keyframe.ppm
+background=0.16,0.09,0.05
+accent=0.98,0.30,0.18

@@ -1,0 +1,34 @@
+#pragma once
+
+#define Position OrbitalPosition
+#define Velocity OrbitalVelocity
+#define Acceleration OrbitalAcceleration
+#define Angle OrbitalAngle
+#define PT OrbitalPoint
+#define ogstream OrbitalOgstream
+#define ogstreamDummy OrbitalOgstreamDummy
+#define ogstreamFake OrbitalOgstreamFake
+#define OrbitalObject OrbitalLegacyObject
+#define Satellite OrbitalLegacySatellite
+#define GPS OrbitalLegacyGPS
+#define Sputnik OrbitalLegacySputnik
+#define Hubble OrbitalLegacyHubble
+#define Dragon OrbitalLegacyDragon
+#define Starlink OrbitalLegacyStarlink
+#define DreamChaser OrbitalLegacyDreamChaser
+#define Projectile OrbitalLegacyProjectile
+#define Part OrbitalLegacyPart
+#define PartType OrbitalLegacyPartType
+#define Fragment OrbitalLegacyFragment
+#define Star OrbitalLegacyStar
+#define glColor orbitalGlColor
+#define random orbitalRandom
+#define computeDistance orbitalComputeDistance
+#define calculateEarthSpeed orbitalCalculateEarthSpeed
+#define EARTH_SPEED ORBITAL_EARTH_SPEED
+#define getTime orbitalGetTime
+#define getAltitude orbitalGetAltitude
+#define getGravity orbitalGetGravity
+#define updateVelocity orbitalUpdateVelocity
+#define updatePosition orbitalUpdatePosition
+#define detectCollision orbitalDetectCollision

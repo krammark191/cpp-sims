@@ -1,0 +1,25 @@
+#pragma once
+
+#undef dragFromMach
+#undef speedSoundFromAltitude
+#undef densityFromAltitude
+#undef gravityFromAltitude
+#undef linearInterpolation
+#undef velocityFromAcceleration
+#undef accelerationFromForce
+#undef forceFromDrag
+#undef areaFromRadius
+#undef rotatePosition
+#undef random
+#undef ogstreamDummy
+#undef ogstream
+#undef Mapping
+#undef Simulator
+#undef Projectile
+#undef Howitzer
+#undef Ground
+#undef PT
+#undef Angle
+#undef Acceleration
+#undef Velocity
+#undef Position
