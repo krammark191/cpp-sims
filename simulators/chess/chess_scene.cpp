@@ -17,6 +17,10 @@
 #include <GL/gl.h>
 #endif
 
+#if defined(CPP_SIMULATORS_WINDOW) && defined(_WIN32)
+#include <GL/gl.h>
+#endif
+
 #include "simulators/chess/chess_legacy_bridge.h"
 #include "simulators/common/scene_render_utils.h"
 
